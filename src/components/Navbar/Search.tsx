@@ -1,16 +1,21 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { searched } from "../../features/filter/filterSlice";
+import { useMatch, useNavigate } from "react-router-dom";
 
 const Search = () => {
   const { search } = useAppSelector((state) => state.filter);
   const dispatch = useAppDispatch();
   const [input, setInput] = React.useState<string>(search);
+  const match = useMatch("/");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("input=====", input);
     dispatch(searched(input));
+    if(!match){
+        navigate('/')
+    }
   };
   return (
     <>

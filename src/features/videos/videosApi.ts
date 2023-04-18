@@ -5,13 +5,14 @@ export const getVideos = async ({ tags, search }: filterTpe) => {
   let queryString = "";
 
   if (tags?.length > 0) {
-    queryString += tags.map((tag: string) => `tags_like_${tag}`).join("&");
+    queryString += tags.map((tag: string) => `tags_like=${tag}`).join("&");
   }
 
   if (search !== "") {
     queryString += `&q=${search}`;
   }
-  const response = await axiosInstance.get(`/videos/?${queryString}`);
+
+  const response = await axiosInstance.get(`/videos?${queryString}`);
 
   return response.data;
 };
