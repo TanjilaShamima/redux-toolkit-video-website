@@ -41,11 +41,11 @@ const VideoPage = () => {
           <Player videoLink={video.link} title={video.title} />
 
           {/* <!-- video description --> */}
-          <VideoDescription video={video}  />
+          <VideoDescription video={video} />
         </div>
 
         {/* <!-- related videos --> */}
-        <RelatedVideoList />
+        <RelatedVideoList tags={video.tags} currentVideoId={video.id} />
       </div>
     );
   }

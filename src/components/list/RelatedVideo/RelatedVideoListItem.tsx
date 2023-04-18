@@ -1,35 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { videoTye } from "../../../features/videos/videoSlice";
 
-const RelatedVideoListItem = () => {
+interface Props {
+  video: videoTye;
+}
+
+const RelatedVideoListItem = ({ video }: Props) => {
   return (
     <div className="w-full flex flex-row gap-2 mb-4">
       <div className="relative w-[168px] h-[94px] flex-none duration-300 hover:scale-[1.03]">
-        <Link to="/videos/1">
+        <Link to={`/videos/${video.id}`}>
           <img
-            src="https://i3.ytimg.com/vi/6O4s7v28nlw/maxresdefault.jpg"
+            src={video.thumbnail}
             className="object-cover"
-            alt="Some video title"
+            alt={video.title}
           />
         </Link>
         <p className="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py">
-          12:10
+          {video.duration}
         </p>
       </div>
 
       <div className="flex flex-col w-full">
-        <Link to="/videos/1">
-          <p className="text-slate-900 text-sm font-semibold">
-            Some video title
-          </p>
+        <Link to={`/videos/${video.id}`}>
+          <p className="text-slate-900 text-sm font-semibold">{video.title}</p>
         </Link>
         <Link
-          to="/videos/1"
+          to={`/videos/${video.id}`}
           className="text-gray-400 text-xs mt-2 hover:text-gray-600"
         >
-          Learn with Sumit
+          {video.author}
         </Link>
-        <p className="text-gray-400 text-xs mt-1">100K views . 23 Oct 2022</p>
+        <p className="text-gray-400 text-xs mt-1">
+          {video.views} views . {new Date(video.date).toDateString()}
+        </p>
       </div>
     </div>
   );
