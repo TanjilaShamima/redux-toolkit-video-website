@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getVideos } from "./videosApi";
 
 export type videoTye = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   author: string;
@@ -13,8 +13,8 @@ export type videoTye = {
   link: string;
   thumbnail: string;
   tags: string[];
-  like: number;
-  unlike: number;
+  likes: number;
+  unlikes: number;
 };
 
 export interface StateType {
@@ -39,7 +39,6 @@ export const fetchVideosAsync = createAsyncThunk(
     return videos;
   }
 );
-
 
 const videoSlice = createSlice({
   name: "videos",
