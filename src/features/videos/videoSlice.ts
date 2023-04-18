@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getVideos } from "./videosApi";
+import { filterTpe } from "../filter/filterSlice";
 
 export type videoTye = {
   id: string;
@@ -34,8 +35,8 @@ const initialState: StateType = {
 //async thunk
 export const fetchVideosAsync = createAsyncThunk(
   "videos/fetchVideos",
-  async () => {
-    const videos: videoTye[] = await getVideos();
+  async ({tags, search}: filterTpe) => {
+    const videos: videoTye[] = await getVideos({tags, search});
     return videos;
   }
 );

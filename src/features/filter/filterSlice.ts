@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type filterTpe = {
+export type filterTpe = {
   tags: string[];
   search: string;
 };
